@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Viking Memory Challenge</title>
+  <link rel="stylesheet" href="css/loci.css">
+  <link rel="stylesheet" href="css/w3.css">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+ #banner {
+  display:flex;
+  align-items: center;
+  justify-content: center; 
+  height:80px;
+  width:200px;
+  border-radius:9px;
+} 
+#overlay {
+  position:fixed;
+  top:0;
+  left:0;
+  right:0;
+  bottom:0;
+  display:flex;
+  align-items: center;
+  justify-content: center;
+  width:100vw;
+  height:100vh;
+  z-index:10;
+}
+#playArea {
+  position:fixed;
+  top:0;
+  left:0;
+  right:0;
+  bottom:0;
+  display:flex;
+  align-items: center;
+  justify-content: center;
+  /*width:100vw;
+  height:100vh;*/
+  z-index:1;
+}
+#wrong {
+  width:25vw;
+  height:auto;
+}
+#top {
+  display:flex;
+  align-items: center;
+  justify-content: center;
+  z-index:20;
+  display:block;
+  width:100vw;
+  height:auto;
+}
+#landing {
+  display:flex;
+  align-items: center;
+  align-content: center;
+  flex-wrap:wrap;
+  position:fixed;
+  top:0;
+  left:0;
+  right:0;
+  bottom:0;
+  background-image: url("/backgrounds/main.jpg");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  transition:opacity 1s;
+  z-index:100;
+}
+.start {
+  width:100vw;
+  display:flex;
+  justify-content: space-around;
+  align-items: center;
+}
+#background {
+  position:fixed;
+  top:0;
+  left:0;
+  bottom:0;
+  right:0;
+  width:100vw;
+  height:100vh;
+  z-index:2;
+}
+#loci {
+  z-index: 3;
+}
+</style>
+</head>
+<body class="black">
+
+<div id="landing" onclick="start()">
+  <div class="start xxlarge text-white">Viking Memory Challenge</div>
+  <div class="start text-white">Click to Start</div>
+</div>
+
+ <!-- pop-up banner -->
+ <div id="overlay" class="hide">
+   <img src="stickers/wrong.png" alt="wrong" id="wrong">
+  <!--<div class="black card-4 padding xxlarge" id="banner"></div>-->
+</div>  
+
+
+  <!-- sticker to match -->
+  <div class="top black center" id="top">
+    <button class="black right btn" onclick="requestFullScreen(document.body)">Fullscreen</button>
+    <div class="center padding large" id="match"></div>
+  </div>
+
+  <!-- play area -->
+<div id="playArea">
+  <img src="backgrounds/lociThree.jpg" id="background">
+  <div id="loci"></div>
+</div>
+  
+<script src="main.js" type="module"></script>
+
+<script>
+function requestFullScreen(element) {
+  var requestMethod = element.requestFullScreen || element.webkitRequestFullScreen || element.mozRequestFullScreen || element.msRequestFullScreen;
+  if (requestMethod) { 
+      requestMethod.call(element);
+  } 
+}
+
+function hide(){
+  document.getElementById('landing').classList.add('hide')
+}
+
+function setUp(){
+  document.getElementById('landing').classList.add('fade')
+  setTimeout(hide, 1000)
+}
+
+function start(){
+  requestFullScreen(document.body)
+  setTimeout(setUp, 4000)
+}
+</script>
+
+</body>
+</html>
